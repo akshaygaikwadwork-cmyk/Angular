@@ -1,0 +1,48 @@
+<h1>{{ title }}</h1>
+<p>Welcome, {{ userName.toUpperCase() }}!</p>
+<!-- Example of interpolation in Angular -->
+<p>You are {{ age }} years old.</p>
+<!-- Example of expression in Angular -->
+<p>Expression: {{ age * 365 }} days</p>
+<!-- Variable in Angular -->
+<p>Count: {{ count }}</p>
+<p>Price: {{ price }}</p>
+<p>Status: {{ isLoggedIn ? 'Logged In' : 'Not Logged In' }}</p>
+<!-- Methods in Angular: -->
+<p>Method Result: {{ getUserInfo() }}</p>
+<!-- Signal usage in Angular: -->
+<p>Signal Value: {{ data() }}</p>
+
+<!-- Following are not allowed in interpolation: -->
+<!-- 1. <p>Invalid: {{ data = "New Value" }}</p> -->
+<!-- 2. <p>Invalid: {{ console.log("Hello") }}</p> -->
+<!-- 3. <p>Invalid: {{ alert("Hello") }}</p> -->
+<!-- 4. <p>Invalid: {{ this.title }}</p> -->
+<!-- 5. <p>Invalid: {{ function() { return "Hello"; } }}</p> -->
+<!-- 6. <p>Invalid: {{ import { Component } from '@angular/core'; }}</p> -->
+<!-- 7. <p>Invalid: {{ for (let i = 0; i < 5; i++) { console.log(i); } }}</p> -->
+<!-- 8. <p>Invalid: {{ if (age > 18) { console.log("Adult"); } }}</p> -->
+<!-- 9. <p>Invalid: {{ while (true) { console.log("Infinite Loop"); } }}</p> -->
+<!-- 10. <p>Invalid: {{ switch (value) { case 1: console.log("One"); break; } }}</p> -->
+ 
+ 
+<!-- 
+❌ Not Allowed in Interpolation
+
+Angular interpolation {{ }} supports expressions, not full JavaScript/TypeScript statements.
+
+{{ data = "New Value" }}        ❌ Assignment
+{{ console.log("Hello") }}     ❌ Unsupported global
+{{ alert("Hello") }}           ❌ Unsupported global
+{{ this.title }}               ❌ Don't use `this`
+{{ function() {} }}            ❌ Function declaration
+{{ import ... }}               ❌ Import statement
+{{ for (...) {} }}             ❌ Statement
+{{ if (...) {} }}              ❌ Statement
+{{ while (...) {} }}           ❌ Statement
+{{ switch (...) {} }}          ❌ Statement
+Remember
+{{ expression }}  ✅ Produces a value
+Statements        ❌ Not allowed
+
+Interpolation is mainly used to read/display values, not to modify state or execute statements. -->

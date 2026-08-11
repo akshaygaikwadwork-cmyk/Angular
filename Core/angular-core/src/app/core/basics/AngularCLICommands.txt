@@ -1,0 +1,112 @@
+CLI = Command Line Interface
+
+Angular CLI is a command-line tool used to create, generate,
+run, build, test, and manage Angular applications.
+
+
+1. PROJECT COMMANDS
+-------------------
+
+ng new <app-name>       Create a new Angular application
+ng serve                Run application locally
+ng build                Build application
+ng test                 Run unit tests
+ng lint                 Check code quality
+ng version              Show Angular/CLI version
+ng update               Update Angular/dependencies
+ng help                 Show available commands
+
+
+2. GENERATE COMMAND
+-------------------
+
+ng generate
+ng g
+
+Used to generate Angular files.
+
+
+Common commands:
+
+ng g c <name>            Component
+ng g s <name>            Service
+ng g p <name>            Pipe
+ng g d <name>            Directive
+ng g guard <name>        Route Guard
+ng g interceptor <name>  HTTP Interceptor
+ng g interface <name>   TypeScript Interface
+
+
+3. EXAMPLES
+-----------
+
+ng g c interpolation
+    Create interpolation component
+
+ng g c core/basics/interpolation
+    Create component inside core/basics/
+
+ng g s user
+    Create user service
+
+ng g p custom-format
+    Create custom pipe
+
+
+4. USEFUL OPTIONS
+-----------------
+
+--dry-run
+    Shows what will be created without creating files.
+
+    Example:
+    ng g c user --dry-run
+
+
+--skip-tests
+    Does not create the .spec.ts test file.
+
+    Example:
+    ng g c user --skip-tests
+
+
+--style=scss
+    Creates component with SCSS stylesheet.
+
+    Example:
+    ng g c user --style=scss
+
+
+--help
+    Shows available options for a command.
+
+    Example:
+    ng g c --help
+
+
+5. IMPORTANT
+------------
+
+Run Angular CLI commands INSIDE the Angular workspace.
+
+Workspace contains:
+
+    angular.json
+    package.json
+    src/
+    tsconfig.json
+
+
+6. MOST USED COMMANDS
+---------------------
+
+ng new       -> Create application
+ng serve     -> Run application
+ng g c       -> Create component
+ng g s       -> Create service
+ng g p       -> Create pipe
+ng build     -> Build application
+ng test      -> Run tests
+ng version   -> Check version
+ng update    -> Update Angular
+ng mcp       -> Model Context Protocol (Allows AI coding assistants to interact with your Angular project and Angular CLI)
