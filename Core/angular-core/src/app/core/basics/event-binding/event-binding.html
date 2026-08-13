@@ -1,0 +1,24 @@
+<p>event-binding works!</p>
+
+<!-- increment -->
+<button (click)="increment()">Increment</button>
+<p>Count: {{ count }}</p>
+
+<!-- signal -->
+<p> Count with signal : {{countSignal()}} </p>
+<!-- signal -->
+
+
+<!-- show event -->
+<button (click)="showEvent($event)">Show Event</button>
+<br><br>
+
+<!-- update user name using input event -->
+<input (input)="updateUserName($event.target.value)" placeholder="Enter someone name"/>
+<p>User Name: {{ userName }}</p>
+
+<!-- form submission with event handling -->
+<form (submit)="handleSubmit($event)">
+<input type="text" placeholder="Enter something" />
+<button type="submit">Submit</button>
+</form>

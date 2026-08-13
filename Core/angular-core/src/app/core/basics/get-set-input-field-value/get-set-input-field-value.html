@@ -1,0 +1,19 @@
+<p>get-set-input-field-value </p>
+
+<!-- Get/Set value using Function + event-->
+
+<input (input)="updateName($event.target.value)" placeholder="Enter your name" />
+
+<p>Your name is: {{name}}</p>
+
+<!-- Get value using $event(event object) -->
+
+<input (input)="city=$event.target.value" placeholder="Enter Your City" />
+
+<p>Your city is: {{city}}</p>
+
+<!-- Get value using Template Reference Variable -->
+
+<input #userInput placeholder="Enter your Email" />
+<button (click)="getEmailByFun(userInput.value)">Get Email</button>
+<p>Your Email is: {{email}}</p>

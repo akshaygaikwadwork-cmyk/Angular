@@ -1,0 +1,43 @@
+<p>loop works!</p>
+
+<!-- $index represents the current position/index. -->
+<!-- track - tells Angular how to uniquely identify each item in an @for loop so Angular can efficiently update the DOM when the list changes. -->
+
+<h3>List of data :</h3>
+
+<!-- Example 1 - Basic Syntax -->
+@for (item of items; track $index) {
+  <p>{{ item }}</p>
+}
+
+<!-- Exmaple 2 - Data with Index -->
+
+@for (item of items; track $index) {
+  <p>{{ $index + 1 }}. {{ item }}</p>
+}
+
+<!-- Example 3 - Loops with object -->
+
+@for (user of users; track $index) {
+  <div>
+    <h4>{{ user.name }}</h4>
+    <p>{{ user.age }}</p>
+  </div>
+}
+
+<!-- Example 4 - List data change with button click  -->
+
+@for (item of itemsList; track $index) {
+  <p>{{ item }}</p>
+  <button (click)="removeItem($index)">Delete</button>
+}
+
+<!-- Example 5 - To find even odd from List of data -->
+
+@for (item of numbersList; track $index) {
+  @if (item % 2 === 0) {
+    <p>Even value: {{ item }}</p>
+  } @else {
+    <p>Odd value: {{ item }}</p>
+  }
+}

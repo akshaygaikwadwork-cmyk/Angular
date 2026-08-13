@@ -1,0 +1,18 @@
+<p>property-binding works!</p>
+
+<!-- Property Binding : One-way Data Flow ( From Component to Template )-->
+
+<img [src]="imageUrl" />
+
+<button [disabled]="isDisabled">Click Me</button>
+
+<input [value]="username" />
+
+<div [class.Active]="isActive">
+Status
+</div>
+
+<div [style.width.px]="boxWidth" [style.background-color]="bgColor">
+</div>
+
+<p [innerText]="'Count is:' + count()"></p>

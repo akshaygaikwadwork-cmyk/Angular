@@ -1,0 +1,66 @@
+<p>switch-statement works!</p>
+
+<!-- Example1  -->
+
+@switch (value) {
+  @case ('Home') {
+    <p>Welcome to the Home section.</p>
+  }
+  @case ('Profile') {
+    <p>Welcome to your Profile.</p>
+  }
+  @case ('Settings') {
+    <p>Welcome to Settings.</p>
+  }
+  @default {
+    <p>Page not found.</p>
+  }
+}
+
+<!-- Example2 with buttons click -->
+
+<button (click)="tab='Home'">Home</button>
+<button (click)="tab='Profile'">Profile</button>
+<button (click)="tab='Settings'">Settings</button>
+
+@switch(tab){
+    @case ('Home'){
+        <p>Welcome to the Home section.</p>
+    }
+    @case ('Profile'){
+        <p>Welcome to your Profile.</p>
+    }
+    @case ('Settings'){
+        <p>Welcome to Settings.</p>
+    }
+    @default{
+        <p>Page not found.</p>
+    }
+}
+
+<!-- Example 3  -->
+
+<input (input)="updateCategory($event.target.value)" placeholder="Enter category"/>
+
+@switch (categories) {
+    @case ('fruit'){
+        <p>Fruit Category</p>
+    }
+    @case ('veg'){
+        <p>Veg Category</p>
+    }
+    @case ('non-veg'){
+        <p>non-veg category</p>
+    }
+    @default {
+        <p>Not Found</p>
+    }
+}
+
+<!-- Switch vs Else-if -->
+<!-- 1. Performance: Switch statements can be more performant than multiple else-if statements when there are many conditions to check. -->
+<!-- 2. Readability: Switch statements can improve code readability by providing a clear structure for handling multiple cases. -->
+<!-- 3. Maintainability: Switch statements can make the code easier to maintain and update when new cases are added or existing cases are modified. -->
+<!-- 4. Debugging: Switch statements can make it easier to debug code by allowing developers to quickly identify which case is being executed. -->
+<!-- 5. Code Organization: Switch statements can help organize code by grouping related conditions together. -->
+<!-- 6. Flexibility: Switch statements can provide more flexibility in handling different types of input values. -->

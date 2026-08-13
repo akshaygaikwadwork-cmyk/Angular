@@ -1,0 +1,52 @@
+<p>else-if-statement works!</p>
+
+<!-- Example 1: Order Status -->
+@if(status == 'pending'){
+ <h3>Order is pending</h3>
+} @else if (status == 'processing'){
+ <h3>Order is being processed</h3>
+} @else if (status == 'shipped'){
+ <h3>Order has been shipped</h3>
+} @else {
+ <h3>Order status unknown</h3>
+}
+
+<!-- Example 2: Grade Calculation -->
+@if(marks >= 90){
+ <h3>Grade: A</h3>
+} @else if (marks >= 80){
+ <h3>Grade: B</h3>
+} @else if (marks >= 70){
+ <h3>Grade: C</h3>
+} @else if (marks >= 60){
+ <h3>Grade: D</h3>
+} @else {
+ <h3>Grade: F</h3>
+}
+
+<!-- Example 3: Age Group -->
+<input type="number" (input)="updateAge($event.target.value)" placeholder="Enter age" />
+
+@if(age < 18){
+ <h3>You are a minor.</h3>
+} @else if (age >= 18 && age < 65){
+ <h3>You are an adult.</h3>
+} @else {
+ <h3>You are a senior citizen.</h3>
+}
+
+<!-- Example 4: Section Navigation -->
+
+<button (click)="section = 'Home'">Home</button>
+<button (click)="section = 'Profile'">Profile</button>
+<button (click)="section = 'Settings'">Settings</button>
+
+@if(section == 'Home'){
+ <h3>Welcome to the Home section.</h3>
+} @else if (section == 'Profile'){
+ <h3>Welcome to your Profile.</h3>
+} @else if (section == 'Settings'){
+ <h3>Welcome to Settings.</h3>
+} @else {
+ <h3>Please select a section.</h3>
+}

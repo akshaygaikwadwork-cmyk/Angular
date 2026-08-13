@@ -1,0 +1,43 @@
+<p>for-loop-contextual-variables works!</p>
+
+<!-- Using $index , $count -->
+@for (item of items; track $index; let i = $index; let c = $count) {
+  <p>{{ i + 1 }} -> {{ item }}</p>
+  <p>Total Count: {{ c }}</p>
+}
+
+<!-- Print $First value and $Last value -->
+@for (item of items; track $index; let f = $first; let l = $last) {
+  @if (f) {
+    <p>First Item: {{ item }}</p>
+  }
+  @if (l) {
+    <p>Last Item: {{ item }}</p>
+  }
+}
+
+<!-- Even value and Odd value print from List Data -->
+
+@for (item of items; track $index) {
+  <!-- @if ($even) {
+    <p>Even value : {{ item }}</p>
+  } @else {
+    <p>Odd value : {{ item }}</p>
+  } -->
+  <p [style.background]="$odd ? 'red' : 'yellow'">
+    {{ item }}
+  </p>
+}
+
+<!-- All Contextual in one -->
+
+@for (item of numbers; track $index) {
+  <span>{{ item }}</span> |
+  <span>Indexing : {{ $index }}</span> |
+  <span>Even: {{ $even }}</span> | 
+  <span>Odd: {{ $odd }}</span> | 
+  <span>First: {{ $first }}</span> | 
+  <span>Last: {{ $last }}</span> | 
+  <span>Count: {{ $count }}</span> 
+  <br>
+}

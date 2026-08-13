@@ -1,0 +1,72 @@
+<!-- 1st way without signals -->
+<div class="counter-container">
+
+  <h1>Simple Counter App without Signals</h1>
+
+  <div class="counter-value">
+    {{ count }} 
+  </div>
+
+  <div class="counter-actions">
+    <button class="btn btn-decrement" (click)="decrement()">
+    -
+    </button>
+
+    <button class="btn btn-reset" (click)="reset()">
+      Reset
+    </button>
+
+    <button class="btn btn-increment" (click)="increment()">
+      +
+    </button>
+  </div>
+
+</div>
+
+<!-- 2nd way with signals -->
+<div class="counter-container">
+
+  <h1>Simple Counter App (Signals)</h1>
+
+  <div class="counter-value">
+    {{ countSignal() }}
+  </div>
+
+  <div class="counter-actions">
+    <button class="btn btn-decrement" (click)="decrementSignal()">
+    -
+    </button>
+
+    <button class="btn btn-reset" (click)="resetSignal()">
+      Reset
+    </button>
+
+    <button class="btn btn-increment" (click)="incrementSignal()">
+      +
+    </button>
+  </div>
+
+</div>
+
+<!-- 3rd way with common logic with action name pass -->
+<div class="counter-container">
+
+  <h1>Simple Counter App (Common Logic)</h1>
+
+  <div class="counter-value">
+    {{ countSignal() }}
+  </div>
+
+  <div class="counter-actions">
+    <button class="btn btn-decrement" (click)="updateCount('decrement')">
+    -
+    </button>
+
+    <button class="btn btn-reset" (click)="updateCount('reset')">
+      Reset
+    </button>
+
+    <button class="btn btn-increment" (click)="updateCount('increment')">
+      +
+    </button>
+  </div>

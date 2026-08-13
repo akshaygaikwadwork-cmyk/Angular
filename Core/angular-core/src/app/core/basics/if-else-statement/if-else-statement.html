@@ -1,0 +1,41 @@
+<p>if-else-statement works!</p>
+<!-- Example 1: Login Status -->
+@if(isLoggedIn){
+  <p>Welcome, user!</p>
+} @else {
+  <p>Please log in.</p>
+}
+
+<!-- Example 2: Marks Evaluation -->
+@if(marks >= 50){
+    <p>Pass</p>
+} @else {
+    <p>Fail</p>
+}
+
+<!-- Example 3: Toggle Box -->
+<button (click)="toggleBox()">Toggle</button>
+
+@if(showBox){
+    <div class="box">
+        This box is visible.
+    </div>
+} @else {
+    <div class="box">
+        This box is hidden.
+    </div>
+}
+
+<!-- Example 4: Age Evaluation -->
+
+<input (input)="updateAge($event.target.value)" placeholder="Enter age" min="0" max="100" type="number"/>
+
+@if(age >= 18){
+    <p>You are an adult.</p>
+} @else {
+    <p>You are a minor.</p>
+}
+
+<!-- ngIf vs if-else -->
+ <!-- ngIf - means it will only render the element if the condition is true - Angular version before 17 -->
+<!-- if-else - means it will render one element if the condition is true, and another if it's false - Angular version 17 and later -->

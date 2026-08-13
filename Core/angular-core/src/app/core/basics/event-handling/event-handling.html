@@ -1,0 +1,17 @@
+<p>event-handling works!</p>
+<!-- On Click -->
+<button (click)="handleClick()">Click me!</button>
+<br>
+<!-- On Input Change -->
+<input (input)="onTyping($event)" placeholder="Type something..." />
+<br>
+<!-- On Key Up -->
+<input (keyup)="onKeyUp($event)" placeholder="Press a key..." />
+<br>
+<!-- On Mouse Over -->
+<div (mouseover)="onMouseOver($event)" (mouseleave)="onMouseLeave($event)" class="hover-box">
+  Hover over me!
+</div>
+
+<!-- On Blur and On Focus -->
+<input (blur)="onBlur($event)" (focus)="onFocus($event)" placeholder="Click outside me..." /> 

@@ -1,0 +1,185 @@
+<p>datatype works!</p>
+
+
+<p>Value: {{value}}</p>
+<br><br>
+<button (click)="handleClick()">Click on this see console</button>
+
+<p> All Data Types </p>
+<!-- =========================================================
+     1. STRING
+     ========================================================= -->
+
+<!-- TypeScript:
+     name: string = "Akshay Gaikwad";
+-->
+
+<p>String: {{ name }}</p>
+
+
+<!-- =========================================================
+     2. NUMBER
+     ========================================================= -->
+
+<!-- TypeScript:
+     age: number = 23;
+     price: number = 99.99;
+-->
+
+<p>Number - Age: {{ age }}</p>
+
+<!-- You can also perform expressions -->
+<p>Age + 1: {{ age + 1 }}</p>
+
+
+<!-- =========================================================
+     3. BOOLEAN
+     ========================================================= -->
+
+<!-- TypeScript:
+     isActive: boolean = true;
+-->
+
+<!-- Boolean can be displayed as text -->
+<p>Boolean: {{ isActive }}</p>
+
+<!-- Better: use it in an expression -->
+<p>Status: {{ isActive ? 'Active' : 'Inactive' }}</p>
+
+
+<!-- =========================================================
+     4. NULL
+     ========================================================= -->
+
+<!-- TypeScript:
+     selectedUser: string | null = null;
+-->
+
+<p>Null value: {{ selectedUser }}</p>
+
+<!-- Use a fallback when the value can be null -->
+<p>
+  Selected User: {{ selectedUser ?? 'No user selected' }}
+</p>
+
+
+<!-- =========================================================
+     5. UNDEFINED
+     ========================================================= -->
+
+<!-- TypeScript:
+     email: string | undefined = undefined;
+-->
+
+<p>Undefined value: {{ email }}</p>
+
+<!-- Use ?? for a fallback -->
+<p>
+  Email: {{ email ?? 'Email not available' }}
+</p>
+
+
+<!-- =========================================================
+     6. ARRAY — STRING[]
+     ========================================================= -->
+
+<!-- TypeScript:
+     names: string[] = ['Akshay', 'Rahul', 'Amit'];
+-->
+
+<!-- Print the complete array -->
+<p>Names: {{ names }}</p>
+
+<!-- Print individual values using index -->
+<p>First Name: {{ names[0] }}</p>
+<p>Second Name: {{ names[1] }}</p>
+<p>Third Name: {{ names[2] }}</p>
+
+
+<!-- =========================================================
+     7. ARRAY — NUMBER[]
+     ========================================================= -->
+
+<!-- TypeScript:
+     marks: number[] = [80, 90, 75];
+-->
+
+<p>Marks: {{ marks }}</p>
+
+<p>First Mark: {{ marks[0] }}</p>
+<p>Second Mark: {{ marks[1] }}</p>
+
+<!-- Array property -->
+<p>Total Marks: {{ marks.length }}</p>
+
+<!-- =========================================================
+     8. UNION TYPE
+     ========================================================= -->
+
+<!-- TypeScript:
+     userId: string | number = 101;
+-->
+
+<p>User ID: {{ userId }}</p>
+
+<!-- It can contain either string OR number -->
+
+<!-- Example:
+     userId = 101;      ✅
+     userId = 'A101';   ✅
+-->
+
+
+<!-- =========================================================
+     9. LITERAL TYPE
+     ========================================================= -->
+
+<!-- TypeScript:
+     status: 'active' | 'inactive' = 'active';
+-->
+
+<p>Status: {{ status }}</p>
+
+
+<!-- =========================================================
+     10. TUPLE
+     ========================================================= -->
+
+<!-- TypeScript:
+     userInfo: [string, number] = ['Akshay', 23];
+-->
+
+<!-- Tuple:
+     Index 0 → string
+     Index 1 → number
+-->
+
+<p>User Name: {{ userInfo[0] }}</p>
+<p>User Age: {{ userInfo[1] }}</p>
+
+
+<!-- =========================================================
+     13. ANY
+     ========================================================= -->
+
+<!-- TypeScript:
+     data: any = 'Hello';
+-->
+
+<!-- 
+any
+ ↓
+No type safety
+TypeScript trusts you
+Use only when necessary
+
+
+unknown
+ ↓
+Type is unknown
+TypeScript forces you to check
+Safer choice when the type is genuinely unknown -->
+
+
+<button (click)="sum(10,40)">Click for Sum</button>
+<p>Sum: {{ result }}</p>
