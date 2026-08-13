@@ -14,6 +14,14 @@ import { ElseIfStatement } from './core/basics/else-if-statement/else-if-stateme
 import { SwitchStatement } from './core/basics/switch-statement/switch-statement';
 import { Loop } from './core/basics/loop/loop';
 import { ForLoopContextualVariables } from './core/basics/for-loop-contextual-variables/for-loop-contextual-variables';
+import { Signals } from './core/Intermediate/signals/signals';
+import { SignalsWithDataTypes } from './core/Intermediate/signals-with-data-types/signals-with-data-types';
+import { ComputedSignals } from './core/Intermediate/computed-signals/computed-signals';
+import { EffectsSignals } from './core/Intermediate/effects-signals/effects-signals';
+import { Pipes } from './core/Intermediate/pipes/pipes';
+import { PipeShortNamePipe } from './core/Intermediate/pipe/custom-pipes/pipe-short-name-pipe';
+import { SignalDeepDive } from './core/Intermediate/signal-deep-dive/signal-deep-dive';
+import { TwoWayBinding } from './core/basics/two-way-binding/two-way-binding';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +40,13 @@ import { ForLoopContextualVariables } from './core/basics/for-loop-contextual-va
     SwitchStatement,
     Loop,
     ForLoopContextualVariables,
+    Signals,
+    SignalsWithDataTypes,
+    ComputedSignals,
+    EffectsSignals,
+    Pipes,
+    SignalDeepDive,
+    TwoWayBinding,
     RouterOutlet,
   ],
   templateUrl: './app.html',

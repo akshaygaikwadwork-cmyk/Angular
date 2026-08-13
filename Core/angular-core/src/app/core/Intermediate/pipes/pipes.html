@@ -1,0 +1,115 @@
+<p>pipes works!</p>
+
+<h1>lname - {{lname | uppercase }}</h1>
+<h1>uname - {{uname | lowercase }}</h1>
+
+<p>Short Date : {{today | date: 'short'}}</p>
+
+<p>Full Date : {{today | date: 'fullDate'}}</p>
+
+<p>Custom Date : {{today | date: 'dd/MM/yyyy'}}</p>
+
+<p>Amount INR : {{amount | currency: 'INR'}}</p>
+
+<p>Amount USD : {{amount | currency: 'USD'}}</p>
+
+<p>Amount EUR : {{amount | currency: 'EUR'}}</p>
+
+<p>Custom Format of currency : {{amount | currency: 'INR': 'symbol':'1.0-0'}}</p>
+
+<p>Percentage : {{per | percent}}</p>
+
+<p> Json : {{user | json}}</p>
+
+
+<h1>Custom Pipe Example</h1>
+
+<p>Short Name - Example</p>
+{{fullName | pipeShortName}}
+
+<h2>Currency Convert- Example with multiple parameter</h2>
+
+USD : {{usd | currency}}
+USDToINR : {{usd | convertPipe: usdToInr | currency : 'INR'}}
+
+<h2>Angular Pipes - Notes</h2>
+
+<p>
+  <b>Definition:</b>
+  A Pipe is used to transform or format data before displaying it
+  in the HTML.
+</p>
+
+<p>
+  <b>Syntax:</b>
+  value | pipeName
+</p>
+
+<p>
+  <b>Why?</b>
+  To display data in a required format without changing the original value.
+</p>
+
+<p>
+  <b>When?</b>
+  Use Pipes when we need to format or transform data for display.
+</p>
+
+<h3>Types of Pipes</h3>
+
+<p>
+  <b>1. Built-in Pipes:</b>
+  Angular provides ready-made Pipes.
+</p>
+
+<p>
+  <b>uppercase</b> → Converts text to uppercase.
+</p>
+
+<p>
+  <b>lowercase</b> → Converts text to lowercase.
+</p>
+
+<p>
+  <b>date</b> → Formats date values.
+</p>
+
+<p>
+  <b>currency</b> → Formats numbers as currency.
+</p>
+
+<p>
+  <b>percent</b> → Formats numbers as percentages.
+</p>
+
+<p>
+  <b>json</b> → Converts an object into JSON text for display/debugging.
+</p>
+
+<p>
+  <b>2. Custom Pipes:</b>
+  We create our own Pipe when the required transformation is not
+  provided by Angular's built-in Pipes.
+</p>
+
+<p>
+  Example:
+  <b>pipeShortName</b> → Converts a full name into a short name.
+</p>
+
+<p>
+  Example:
+  <b>convertPipe</b> → Performs custom currency conversion.
+</p>
+
+<h3>Important</h3>
+
+<p>
+  A Pipe normally transforms the value only for display.
+  It does not modify the original value.
+</p>
+
+<p>
+  <b>In short:</b>
+  Pipe = Transform/format data for display.
+</p>

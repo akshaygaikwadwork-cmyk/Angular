@@ -1,0 +1,1485 @@
+<p>signals works!</p>
+
+
+<p>Value: {{val}}</p>
+<button (click)="count.set(20)">Change Signal</button>
+
+<br><br>
+
+<p>Count with signals: {{count()}}</p>
+
+<button (click)="increment()">+</button>
+<br>
+<button (click)="decrement()">-</button>
+<br>
+<button (click)="reset()">Reset</button>
+<br>
+
+
+
+<!-- 
+
+ANGULAR SIGNALS - COMPLETE BEGINNER NOTES
+==========================================
+
+1. WHAT IS A SIGNAL?
+--------------------
+
+A Signal is a reactive container that stores a value.
+
+Angular can track a Signal and know when its value changes.
+
+Normal variable:
+
+    count = 0;
+
+Signal:
+
+    count = signal(0);
+
+
+Simple definition:
+
+    Signal = A reactive value that Angular can track.
+
+When the Signal changes, Angular can update the UI
+that depends on that Signal.
+
+
+==================================================
+2. WHY DO WE NEED SIGNALS?
+==================================================
+
+Suppose we have:
+
+    count = 0;
+
+The value can change:
+
+    count = 1;
+    count = 2;
+    count = 3;
+
+With Signals:
+
+    count = signal(0);
+
+Angular knows that "count" is reactive.
+
+Flow:
+
+    Signal changes
+          |
+          v
+    Angular detects change
+          |
+          v
+    Dependent UI updates
+
+
+==================================================
+3. HOW TO CREATE A SIGNAL
+==================================================
+
+First import signal:
+
+    import { signal } from '@angular/core';
+
+Then create:
+
+    count = signal(0);
+
+
+Here:
+
+    count
+        = Signal name
+
+    signal(0)
+        = Signal containing initial value 0
+
+
+Example:
+
+    count = signal(10);
+
+Initial value is:
+
+    10
+
+
+==================================================
+4. VERY IMPORTANT - HOW TO READ A SIGNAL
+==================================================
+
+If we have:
+
+    count = signal(10);
+
+
+To get the value:
+
+    count()
+
+
+NOT:
+
+    count
+
+
+Remember:
+
+    count
+        = Signal itself
+
+    count()
+        = Value inside the Signal
+
+
+Example:
+
+    count = signal(10);
+
+    console.log(this.count());
+
+Output:
+
+    10
+
+
+In HTML:
+
+    {{ count() }}
+
+
+==================================================
+5. SET A SIGNAL VALUE
+==================================================
+
+Use set() when you know the new value.
+
+Example:
+
+    count = signal(0);
+
+    this.count.set(10);
+
+
+Now:
+
+    count = 10
+
+
+Another example:
+
+    this.count.set(100);
+
+Now:
+
+    count = 100
+
+
+Use:
+
+    set()
+
+when you want to REPLACE the current value.
+
+
+==================================================
+6. UPDATE A SIGNAL
+==================================================
+
+Use update() when the new value depends on
+the previous/current value.
+
+Example:
+
+    count = signal(0);
+
+    this.count.update(c => c + 1);
+
+
+If:
+
+    count = 0
+
+After update:
+
+    count = 1
+
+
+Again:
+
+    this.count.update(c => c + 1);
+
+Now:
+
+    count = 2
+
+
+Again:
+
+    this.count.update(c => c + 1);
+
+Now:
+
+    count = 3
+
+
+Use:
+
+    update()
+
+when you want to calculate the new value
+using the old value.
+
+
+==================================================
+7. SET VS UPDATE
+==================================================
+
+SET:
+
+    this.count.set(10);
+
+Meaning:
+
+    Replace the value with 10.
+
+
+UPDATE:
+
+    this.count.update(c => c + 1);
+
+Meaning:
+
+    Take the current value
+    and calculate a new value.
+
+
+Example:
+
+    count = 10;
+
+    set(50)
+
+Result:
+
+    50
+
+
+Example:
+
+    count = 10;
+
+    update(c => c + 1)
+
+Result:
+
+    11
+
+
+==================================================
+8. YOUR COUNTER EXAMPLE
+==================================================
+
+Complete Angular component:
+
+    import { signal } from '@angular/core';
+
+    export class Signals {
+
+      count = signal(0);
+
+      increment() {
+        this.count.update(c => c + 1);
+      }
+
+      decrement() {
+        if (this.count() > 0) {
+          this.count.update(c => c - 1);
+        }
+      }
+
+      reset() {
+        this.count.set(0);
+      }
+
+    }
+
+
+HTML:
+
+    <h2>Count: {{ count() }}</h2>
+
+    <button (click)="increment()">+</button>
+
+    <button (click)="decrement()">-</button>
+
+    <button (click)="reset()">Reset</button>
+
+
+==================================================
+9. WHY WAS YOUR decrement() WRONG?
+==================================================
+
+You had:
+
+    this.count >= 0
+
+Problem:
+
+    this.count
+
+is the Signal itself.
+
+You need to read the Signal value:
+
+    this.count()
+
+
+Correct:
+
+    if (this.count() > 0) {
+      this.count.update(c => c - 1);
+    }
+
+
+Why?
+
+Suppose:
+
+    count = 5
+
+    this.count()
+        |
+        v
+        5
+
+
+So:
+
+    this.count() > 0
+
+means:
+
+    5 > 0
+
+which is TRUE.
+
+
+==================================================
+10. COUNTER FLOW
+==================================================
+
+Initial:
+
+    count = 0
+
+
+User clicks +
+
+    count.update(c => c + 1)
+
+Result:
+
+    count = 1
+
+
+User clicks +
+
+    count = 2
+
+
+User clicks +
+
+    count = 3
+
+
+User clicks -
+
+    count = 2
+
+
+User clicks Reset:
+
+    count.set(0)
+
+Result:
+
+    count = 0
+
+
+Flow:
+
+    + Button
+       |
+       v
+    increment()
+       |
+       v
+    update()
+       |
+       v
+    Signal changes
+       |
+       v
+    Angular updates UI
+
+
+==================================================
+11. REAL-WORLD USE CASE #1
+    SHOPPING CART
+==================================================
+
+Imagine an e-commerce website.
+
+We need to show:
+
+    Cart Items: 0
+
+
+Create:
+
+    cartCount = signal(0);
+
+
+When user adds product:
+
+    addToCart() {
+      this.cartCount.update(c => c + 1);
+    }
+
+
+When user removes product:
+
+    removeFromCart() {
+      if (this.cartCount() > 0) {
+        this.cartCount.update(c => c - 1);
+      }
+    }
+
+
+HTML:
+
+    <p>Cart Items: {{ cartCount() }}</p>
+
+    <button (click)="addToCart()">
+      Add To Cart
+    </button>
+
+
+Flow:
+
+    User clicks Add
+          |
+          v
+    cartCount changes
+          |
+          v
+    Angular detects change
+          |
+          v
+    Cart count updates
+
+
+Real application examples:
+
+    Amazon
+    Flipkart
+    Myntra
+    Shopping websites
+
+
+==================================================
+12. REAL-WORLD USE CASE #2
+    LOGIN / LOGOUT
+==================================================
+
+We need to know whether the user is logged in.
+
+Create:
+
+    isLoggedIn = signal(false);
+
+
+Initially:
+
+    false
+
+User logs in:
+
+    login() {
+      this.isLoggedIn.set(true);
+    }
+
+
+User logs out:
+
+    logout() {
+      this.isLoggedIn.set(false);
+    }
+
+
+HTML:
+
+    @if (isLoggedIn()) {
+      <button (click)="logout()">Logout</button>
+    }
+    @else {
+      <button (click)="login()">Login</button>
+    }
+
+
+Flow:
+
+    isLoggedIn = false
+          |
+          v
+       Show Login
+
+    User Login
+          |
+          v
+    isLoggedIn = true
+          |
+          v
+       Show Logout
+
+
+Real application:
+
+    Banking application
+    E-commerce application
+    Admin dashboard
+    Social media application
+
+
+==================================================
+13. REAL-WORLD USE CASE #3
+    LOADING SPINNER
+==================================================
+
+Suppose we call an API.
+
+We need to show:
+
+    Loading...
+
+
+Create:
+
+    loading = signal(false);
+
+
+Before API call:
+
+    this.loading.set(true);
+
+
+After API call:
+
+    this.loading.set(false);
+
+
+HTML:
+
+    @if (loading()) {
+      <p>Loading...</p>
+    }
+
+
+Flow:
+
+    User clicks Search
+          |
+          v
+    loading = true
+          |
+          v
+    Show Loading...
+          |
+          v
+    API Request
+          |
+          v
+    API Response
+          |
+          v
+    loading = false
+          |
+          v
+    Hide Loading...
+
+
+Very common use case.
+
+
+==================================================
+14. REAL-WORLD USE CASE #4
+    DARK MODE
+==================================================
+
+Create:
+
+    darkMode = signal(false);
+
+
+Toggle:
+
+    toggleDarkMode() {
+      this.darkMode.update(value => !value);
+    }
+
+
+Initial:
+
+    false
+       |
+       v
+    Light Mode
+
+
+User clicks button:
+
+    false
+       |
+       v
+    true
+       |
+       v
+    Dark Mode
+
+
+User clicks again:
+
+    true
+       |
+       v
+    false
+       |
+       v
+    Light Mode
+
+
+Useful for:
+
+    Dark Mode
+    Light Mode
+    Theme selection
+    UI preferences
+
+
+==================================================
+15. REAL-WORLD USE CASE #5
+    SEARCH BOX
+==================================================
+
+Create:
+
+    searchText = signal('');
+
+
+User types:
+
+    Angular
+
+
+Signal becomes:
+
+    searchText = "Angular"
+
+
+User changes text:
+
+    Angular Signals
+
+
+Signal becomes:
+
+    searchText = "Angular Signals"
+
+
+Useful for:
+
+    Search
+    Filtering
+    Autocomplete
+    Product search
+    Employee search
+    Table filtering
+
+
+==================================================
+16. REAL-WORLD USE CASE #6
+    PAGINATION
+==================================================
+
+Create:
+
+    currentPage = signal(1);
+
+
+Next page:
+
+    nextPage() {
+      this.currentPage.update(page => page + 1);
+    }
+
+
+Previous page:
+
+    previousPage() {
+      if (this.currentPage() > 1) {
+        this.currentPage.update(page => page - 1);
+      }
+    }
+
+
+HTML:
+
+    <p>Page: {{ currentPage() }}</p>
+
+    <button (click)="previousPage()">
+      Previous
+    </button>
+
+    <button (click)="nextPage()">
+      Next
+    </button>
+
+
+Useful for:
+
+    Employee list
+    Product list
+    Customer list
+    Orders
+    Reports
+
+
+==================================================
+17. computed()
+==================================================
+
+computed() is used when a value depends on
+one or more Signals.
+
+
+Example:
+
+    price = signal(500);
+
+    quantity = signal(2);
+
+
+We want:
+
+    total = price * quantity
+
+
+Use:
+
+    total = computed(() => {
+      return this.price() * this.quantity();
+    });
+
+
+Initial:
+
+    price = 500
+    quantity = 2
+
+    total = 1000
+
+
+If quantity becomes 3:
+
+    quantity.set(3)
+
+
+Automatically:
+
+    total = 1500
+
+
+Flow:
+
+    price --------\
+                   \
+                    > computed() --- total
+                   /
+    quantity -----/
+
+
+Real-world use cases:
+
+    Shopping cart total
+    Tax calculation
+    Discount calculation
+    Full name
+    Filtered list
+    Total price
+    Order summary
+
+
+==================================================
+18. REAL-WORLD computed() EXAMPLE
+    SHOPPING CART
+==================================================
+
+    price = signal(500);
+
+    quantity = signal(2);
+
+    total = computed(() => {
+      return this.price() * this.quantity();
+    });
+
+
+HTML:
+
+    <p>Price: {{ price() }}</p>
+
+    <p>Quantity: {{ quantity() }}</p>
+
+    <p>Total: {{ total() }}</p>
+
+
+Output:
+
+    Price: 500
+    Quantity: 2
+    Total: 1000
+
+
+If quantity changes to 5:
+
+    Quantity: 5
+    Total: 2500
+
+
+You don't manually update total.
+
+computed() does it automatically.
+
+
+==================================================
+19. effect()
+==================================================
+
+effect() runs code when Signals that it reads change.
+
+
+Example:
+
+    count = signal(0);
+
+
+    constructor() {
+      effect(() => {
+        console.log(this.count());
+      });
+    }
+
+
+When count changes:
+
+    count.set(10);
+
+
+The effect runs.
+
+
+Useful for side effects such as:
+
+    Logging
+    localStorage
+    Analytics
+    Synchronizing external systems
+
+
+IMPORTANT:
+
+Use computed() for derived values.
+
+Use effect() for side effects.
+
+
+==================================================
+20. SIGNAL API - REMEMBER THIS
+==================================================
+
+There are 4 important things to remember:
+
+
+1. CREATE
+
+    count = signal(0);
+
+
+2. READ
+
+    count()
+
+
+3. SET
+
+    count.set(10);
+
+
+4. UPDATE
+
+    count.update(c => c + 1);
+
+
+MEMORIZE THESE FOUR.
+
+
+==================================================
+21. SIMPLE MENTAL MODEL
+==================================================
+
+Think about a Signal as a SMART BOX.
+
+
+             SIGNAL
+        +-------------+
+        |      10     |
+        +-------------+
+               |
+               v
+        Angular tracks it
+               |
+               v
+              UI
+
+
+When you do:
+
+    count.set(20);
+
+
+The box becomes:
+
+
+             SIGNAL
+        +-------------+
+        |      20     |
+        +-------------+
+               |
+               v
+        Angular knows
+        value changed
+               |
+               v
+           Update UI
+
+
+==================================================
+22. WHEN SHOULD I USE SIGNALS?
+==================================================
+
+Use Signals when you have reactive state.
+
+Examples:
+
+    isLoggedIn
+    loading
+    cartCount
+    selectedProduct
+    searchText
+    currentPage
+    darkMode
+    selectedCategory
+    user
+    form-related UI state
+    application UI state
+
+
+Think:
+
+    "This value changes AND
+     other things need to react to it."
+
+
+Then Signal is a good option.
+
+
+==================================================
+23. WHEN NOT TO USE A SIGNAL?
+==================================================
+
+Not everything needs to be a Signal.
+
+For example:
+
+    companyName = 'ABC Technologies';
+
+
+If the value never changes, a normal property
+may be enough.
+
+
+Don't think:
+
+    "Everything in Angular must be a Signal."
+
+
+Instead think:
+
+    "Is this reactive state?"
+
+
+If YES:
+
+    Signal may be useful.
+
+
+==================================================
+24. SIGNAL VS NORMAL VARIABLE
+==================================================
+
+NORMAL VARIABLE:
+
+    count = 0;
+
+
+SIGNAL:
+
+    count = signal(0);
+
+
+Reading normal variable:
+
+    count
+
+
+Reading Signal:
+
+    count()
+
+
+Changing normal variable:
+
+    count = 10;
+
+
+Changing Signal:
+
+    count.set(10);
+
+
+Updating Signal based on old value:
+
+    count.update(c => c + 1);
+
+
+==================================================
+25. SIGNAL VS computed()
+==================================================
+
+SIGNAL:
+
+    Stores state.
+
+Example:
+
+    price = signal(500);
+
+
+computed():
+
+    Calculates a value from state.
+
+Example:
+
+    quantity = signal(2);
+
+    total = computed(() => {
+      return this.price() * this.quantity();
+    });
+
+
+Think:
+
+    signal()
+        |
+        v
+    STORES VALUE
+
+
+    computed()
+        |
+        v
+    CALCULATES VALUE
+
+
+==================================================
+26. SIGNAL VS effect()
+==================================================
+
+signal():
+
+    Stores state.
+
+
+computed():
+
+    Calculates derived state.
+
+
+effect():
+
+    Performs a side effect when reactive
+    dependencies change.
+
+
+Simple memory:
+
+    signal
+       =
+    STATE
+
+
+    computed
+       =
+    CALCULATION
+
+
+    effect
+       =
+    SIDE EFFECT
+
+
+==================================================
+27. COMPLETE REAL-WORLD EXAMPLE
+    E-COMMERCE CART
+==================================================
+
+    import {
+      signal,
+      computed
+    } from '@angular/core';
+
+
+    export class CartComponent {
+
+      price = signal(500);
+
+      quantity = signal(1);
+
+      discount = signal(50);
+
+
+      total = computed(() => {
+        return (
+          this.price() * this.quantity()
+          - this.discount()
+        );
+      });
+
+
+      increaseQuantity() {
+        this.quantity.update(q => q + 1);
+      }
+
+
+      decreaseQuantity() {
+        if (this.quantity() > 1) {
+          this.quantity.update(q => q - 1);
+        }
+      }
+
+
+      reset() {
+        this.quantity.set(1);
+      }
+
+    }
+
+
+HTML:
+
+    <h2>Shopping Cart</h2>
+
+    <p>Price: {{ price() }}</p>
+
+    <p>Quantity: {{ quantity() }}</p>
+
+    <p>Discount: {{ discount() }}</p>
+
+    <p>Total: {{ total() }}</p>
+
+
+    <button (click)="decreaseQuantity()">
+      -
+    </button>
+
+
+    <button (click)="increaseQuantity()">
+      +
+    </button>
+
+
+    <button (click)="reset()">
+      Reset
+    </button>
+
+
+Example:
+
+    Price = 500
+    Quantity = 2
+    Discount = 50
+
+    Total:
+
+    (500 x 2) - 50
+
+    = 950
+
+
+If quantity changes to 3:
+
+    (500 x 3) - 50
+
+    = 1450
+
+
+The total automatically changes because
+total is a computed Signal.
+
+
+==================================================
+28. FINAL INTERVIEW DEFINITION
+==================================================
+
+QUESTION:
+
+What is Angular Signal?
+
+
+ANSWER:
+
+Angular Signal is a reactive state management
+primitive that stores a value and allows Angular
+to track where that value is used.
+
+When the Signal value changes, Angular can
+reactively update the dependent parts of the
+application.
+
+
+==================================================
+29. INTERVIEW - WHY SIGNALS?
+==================================================
+
+QUESTION:
+
+Why do we use Signals?
+
+
+ANSWER:
+
+Signals provide a simple and efficient way to
+manage reactive state in Angular.
+
+They allow Angular to track dependencies and
+update only the parts of the application that
+depend on the changed state.
+
+
+==================================================
+30. INTERVIEW - WHEN TO USE?
+==================================================
+
+QUESTION:
+
+When should we use Signals?
+
+
+ANSWER:
+
+We should use Signals when we have reactive
+application or UI state that changes over time
+and other parts of the application need to
+react to those changes.
+
+Examples:
+
+    Loading state
+    Login state
+    Cart count
+    Search text
+    Selected item
+    Theme
+    Pagination
+    Filters
+
+
+==================================================
+31. MOST IMPORTANT THING TO MEMORIZE
+==================================================
+
+    signal()
+        |
+        |  CREATE
+        v
+    count = signal(0)
+
+
+    count()
+        |
+        |  READ
+        v
+    Current value
+
+
+    count.set(10)
+        |
+        |  SET
+        v
+    New value = 10
+
+
+    count.update(c => c + 1)
+        |
+        |  UPDATE
+        v
+    Current value + 1
+
+
+    computed()
+        |
+        |  CALCULATE
+        v
+    Derived value
+
+
+    effect()
+        |
+        |  SIDE EFFECT
+        v
+    Run code when dependencies change
+
+
+==================================================
+32. EASY WAY TO REMEMBER
+==================================================
+
+    SIGNAL
+       |
+       +---- Stores value
+       |
+       +---- Angular tracks it
+       |
+       +---- Read using ()
+       |
+       +---- set() = replace
+       |
+       +---- update() = modify
+       |
+       +---- computed() = calculate
+       |
+       +---- effect() = side effect
+
+
+==================================================
+33. LEARNING ORDER
+==================================================
+
+Learn Angular Signals in this order:
+
+
+    STEP 1
+       |
+       v
+    signal()
+
+
+    STEP 2
+       |
+       v
+    Reading:
+    count()
+
+
+    STEP 3
+       |
+       v
+    set()
+
+
+    STEP 4
+       |
+       v
+    update()
+
+
+    STEP 5
+       |
+       v
+    computed()
+
+
+    STEP 6
+       |
+       v
+    effect()
+
+
+    STEP 7
+       |
+       v
+    Signals with Services
+
+
+    STEP 8
+       |
+       v
+    Real application state management
+
+
+DO NOT try to learn everything at once.
+
+First become comfortable with:
+
+    signal()
+    count()
+    set()
+    update()
+
+
+Then move to:
+
+    computed()
+
+
+Then:
+
+    effect()
+
+
+==================================================
+FINAL ONE-LINE MEMORY
+==================================================
+
+SIGNAL = REACTIVE VALUE THAT ANGULAR CAN TRACK.
+
+
+Example:
+
+    count = signal(0);
+
+    count();                       // Read
+
+    count.set(10);                 // Set
+
+    count.update(c => c + 1);      // Update
+
+    total = computed(() => ...);   // Calculate
+
+    effect(() => ...);             // Side effect
+================================================== -->

@@ -1,0 +1,213 @@
+<p>signal-deep-dive works!</p>
+
+<!-- Example of - Fine-grained reactivity -->
+<h1>{{count()}}</h1>
+<h1>{{name()}}</h1>
+
+<button (click)="setCount()">Set</button>
+
+<!-- Example of - Signal graph -->
+<h1>{{count2()}}</h1>
+<h1>{{doubleCount()}}</h1>
+
+<button (click)="increment()">Add</button>
+
+<!-- Example of - avoid -overrendring -->
+
+<h3>Count3 : {{count3()}}</h3>
+<h3>Price : {{price()}}</h3>
+<h3>Total : {{total()}}</h3>
+
+<button (click)="updateCount()">update count</button>
+<button (click)="updatePrice()">update price</button>
+
+
+
+
+<h2>Angular Signals - Deep Dive</h2>
+
+<h3>1. Fine-Grained Reactivity</h3>
+
+<p>
+  <b>Definition:</b>
+  Fine-grained reactivity means Angular tracks exactly which Signals
+  are used by the UI or other reactive values.
+</p>
+
+<p>
+  When a Signal changes, Angular updates only the parts that depend
+  on that Signal instead of unnecessarily updating everything.
+</p>
+
+<p>
+  Example:
+  count and name are separate Signals. If count changes, Angular
+  knows that the UI using count needs to react.
+</p>
+
+<p>
+  <b>In short:</b>
+  Signal changes → Angular knows what depends on it → update only
+  the required reactive parts.
+</p>
+
+<hr>
+
+<h3>2. Signal Graph / Dependency Tracking</h3>
+
+<p>
+  Signals can form a dependency graph.
+</p>
+
+<p>
+  Example:
+  doubleCount depends on count2.
+</p>
+
+<p>
+  count2 → doubleCount
+</p>
+
+<p>
+  When count2 changes, Angular knows that doubleCount depends on
+  count2 and recalculates doubleCount.
+</p>
+
+<p>
+  <b>Example:</b>
+  count2 = 2 → doubleCount = 4
+</p>
+
+<p>
+  If count2 becomes 3 → doubleCount automatically becomes 6.
+</p>
+
+<p>
+  <b>In short:</b>
+  Signal → computed Signal → updated value.
+</p>
+
+<hr>
+
+<h3>3. computed()</h3>
+
+<p>
+  <b>Definition:</b>
+  computed() creates a derived Signal whose value depends on other
+  Signals.
+</p>
+
+<p>
+  Example:
+  doubleCount = computed(() => count2() * 2)
+</p>
+
+<p>
+  When count2 changes, doubleCount automatically recalculates.
+</p>
+
+<p>
+  <b>In short:</b>
+  computed() = calculate and return a reactive value.
+</p>
+
+<hr>
+
+<h3>4. effect()</h3>
+
+<p>
+  <b>Definition:</b>
+  effect() automatically executes logic when the Signals used inside
+  the effect change.
+</p>
+
+<p>
+  An effect runs once during initialization and then runs again when
+  its dependent Signals change.
+</p>
+
+<p>
+  Example:
+  effect(() => console.log(total()))
+</p>
+
+<p>
+  When count3 or price changes, total changes and the effect runs.
+</p>
+
+<p>
+  <b>In short:</b>
+  Signal changes → effect() runs → perform some action.
+</p>
+
+<hr>
+
+<h3>5. Avoid Unnecessary Re-rendering</h3>
+
+<p>
+  Signals provide fine-grained reactivity, so Angular can track
+  which parts of the application depend on which Signals.
+</p>
+
+<p>
+  Example:
+  total depends on both count3 and price.
+</p>
+
+<p>
+  count3 → total
+</p>
+
+<p>
+  price → total
+</p>
+
+<p>
+  If count3 changes, total is recalculated because total depends
+  on count3.
+</p>
+
+<p>
+  If price changes, total is recalculated because total depends
+  on price.
+</p>
+
+<p>
+  Angular tracks these dependencies automatically.
+</p>
+
+<hr>
+
+<h3>Important Difference</h3>
+
+<p>
+  <b>Signal:</b>
+  Stores reactive state.
+</p>
+
+<p>
+  <b>computed():</b>
+  Creates a derived value from Signals.
+</p>
+
+<p>
+  <b>effect():</b>
+  Runs side-effect logic when dependent Signals change.
+</p>
+
+<p>
+  <b>Fine-grained reactivity:</b>
+  Angular tracks specific dependencies so reactive updates can be
+  targeted instead of unnecessarily affecting unrelated state.
+</p>
+
+<hr>
+
+<h3>Easy Flow to Remember</h3>
+
+<p>
+  Signal changes
+  → dependency is tracked
+  → computed value recalculates
+  → dependent UI/effect reacts
+</p>

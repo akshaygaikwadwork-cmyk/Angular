@@ -1,0 +1,31 @@
+<p>signals-with-data-types works!</p>
+
+<button (click)="directupdate()">Click to Direct replace using set</button>
+|| &nbsp;
+<button (click)="addValues()">Click to add using update</button>
+
+
+<h3>{{count()}}</h3>
+<h3>{{name()}}</h3>
+<h3>{{isAdmin()}}</h3>
+
+<h3>User using signlas</h3>
+<p>{{user().name}}</p>
+<p>{{user().age}}</p>
+
+
+
+<h3>numbers list using signals</h3>
+@for(da of numbers(); track $index){
+    <p>{{da}}</p>
+}
+
+<h3>users list using signals</h3>
+@for(da of users(); track $index){
+    <p>{{da.name}}  ->  {{da.age}}</p>
+}
+
+<h3>students list using signals</h3>
+@for(stud of students(); track $index){
+    <p>Name: {{stud.name}} , Age: {{stud.age}} ,  isActive: {{stud.isActive}}</p>
+}

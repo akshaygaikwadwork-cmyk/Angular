@@ -1,0 +1,1197 @@
+ANGULAR / TYPESCRIPT
+NAMING CONVENTIONS + CREATION RULES
+===================================
+
+
+1. CLASS NAMING
+===============
+
+Use PascalCase.
+
+First letter of every word is uppercase.
+
+Example:
+
+    UserService
+    UserComponent
+    ProductService
+    OrderComponent
+    Student
+
+
+Correct:
+
+    export class UserService {
+    }
+
+    export class UserComponent {
+    }
+
+
+Avoid:
+
+    export class userService {
+    }
+
+    export class userservice {
+    }
+
+
+C# is similar:
+
+    public class UserService
+    {
+    }
+
+
+==================================================
+2. INTERFACE NAMING
+==================================================
+
+Use PascalCase.
+
+Example:
+
+    interface User {
+      name: string;
+      age: number;
+    }
+
+
+    interface Student {
+      name: string;
+      age: number;
+    }
+
+
+    interface Product {
+      id: number;
+      name: string;
+      price: number;
+    }
+
+
+IMPORTANT:
+
+In modern TypeScript, you generally DO NOT need
+to prefix interfaces with "I" like C# commonly does.
+
+
+C#:
+
+    IUser
+    IProduct
+    IStudent
+
+
+TypeScript:
+
+    User
+    Product
+    Student
+
+
+So prefer:
+
+    interface User {
+    }
+
+
+instead of:
+
+    interface IUser {
+    }
+
+
+Both technically work, but the "I" prefix is not
+the usual TypeScript convention.
+
+
+==================================================
+3. PROPERTY / VARIABLE NAMING
+==================================================
+
+Use camelCase.
+
+First word starts lowercase.
+
+Next words start uppercase.
+
+
+Examples:
+
+    firstName
+    lastName
+    userName
+    userAge
+    isActive
+    isAdmin
+    totalPrice
+    productList
+    currentPage
+
+
+Correct:
+
+    userName = 'Akshay';
+
+    isAdmin = true;
+
+    totalPrice = 500;
+
+
+Avoid:
+
+    UserName
+    username
+    USERNAME
+    user_name
+
+
+C# commonly:
+
+    UserName
+    IsAdmin
+    TotalPrice
+
+
+TypeScript:
+
+    userName
+    isAdmin
+    totalPrice
+
+
+==================================================
+4. METHODS / FUNCTIONS
+==================================================
+
+Use camelCase.
+
+Examples:
+
+    getUsers()
+    getUserById()
+    addUser()
+    deleteUser()
+    updateUser()
+    calculateTotal()
+    loadProducts()
+    saveUser()
+
+
+Correct:
+
+    getUsers() {
+    }
+
+
+    calculateTotal() {
+    }
+
+
+Avoid:
+
+    GetUsers()
+    GET_USERS()
+    get_users()
+
+
+==================================================
+5. CONSTANTS
+==================================================
+
+There are two common cases.
+
+Local/constants can still use camelCase:
+
+    const maxUsers = 100;
+
+
+For module-level constants that represent a
+constant value, UPPER_SNAKE_CASE is also common:
+
+    const MAX_USERS = 100;
+
+    const API_URL = '...';
+
+
+Follow the style used consistently in your project.
+
+
+==================================================
+6. SIGNAL NAMING
+==================================================
+
+Signals are variables, so use camelCase.
+
+Examples:
+
+    count = signal(0);
+
+    userName = signal('Akshay');
+
+    isAdmin = signal(false);
+
+    loading = signal(false);
+
+    users = signal<User[]>([]);
+
+    selectedUser = signal<User | null>(null);
+
+
+Don't use:
+
+    Count
+    UserName
+    IsAdmin
+
+
+==================================================
+7. COMPUTED SIGNAL NAMING
+==================================================
+
+computed() is also usually camelCase.
+
+Examples:
+
+    total = computed(() => ...);
+
+    fullName = computed(() => ...);
+
+    filteredUsers = computed(() => ...);
+
+    totalPrice = computed(() => ...);
+
+    isAdult = computed(() => ...);
+
+
+Example:
+
+    firstName = signal('Akshay');
+
+    lastName = signal('Gaikwad');
+
+    fullName = computed(() => {
+      return `${this.firstName()} ${this.lastName()}`;
+    });
+
+
+==================================================
+8. COMPONENT CLASS NAMING
+==================================================
+
+Use PascalCase.
+
+Normally Angular generates:
+
+    UserComponent
+    ProductComponent
+    LoginComponent
+    DashboardComponent
+
+
+Example:
+
+    export class UserComponent {
+    }
+
+
+File:
+
+    user.component.ts
+
+
+Notice:
+
+CLASS:
+
+    UserComponent
+
+
+FILE:
+
+    user.component.ts
+
+
+==================================================
+9. SERVICE CLASS NAMING
+==================================================
+
+Use PascalCase + Service.
+
+Examples:
+
+    UserService
+    ProductService
+    AuthService
+    OrderService
+    PaymentService
+
+
+Example:
+
+    export class UserService {
+
+      getUsers() {
+      }
+
+    }
+
+
+File:
+
+    user.service.ts
+
+
+==================================================
+10. DIRECTIVE NAMING
+==================================================
+
+Class:
+
+    HighlightDirective
+
+
+File:
+
+    highlight.directive.ts
+
+
+Example:
+
+    export class HighlightDirective {
+    }
+
+
+==================================================
+11. PIPE NAMING
+==================================================
+
+Class:
+
+    CapitalizePipe
+    DateFormatPipe
+    CurrencyPipe
+
+
+File:
+
+    capitalize.pipe.ts
+
+
+Example:
+
+    export class CapitalizePipe {
+    }
+
+
+==================================================
+12. GUARD NAMING
+==================================================
+
+Examples:
+
+    AuthGuard
+    AdminGuard
+    LoginGuard
+
+
+Modern Angular may also use functional guards,
+but when using a class, use PascalCase.
+
+
+==================================================
+13. MODEL / INTERFACE NAMING
+==================================================
+
+Use PascalCase.
+
+Example:
+
+    interface User {
+      id: number;
+      name: string;
+      age: number;
+    }
+
+
+    interface Product {
+      id: number;
+      name: string;
+      price: number;
+    }
+
+
+    interface Order {
+      id: number;
+      total: number;
+    }
+
+
+Remember:
+
+    User
+    Product
+    Order
+
+NOT:
+
+    IUser
+    IProduct
+    IOrder
+
+The "I" prefix is generally unnecessary in TypeScript.
+
+
+==================================================
+14. PROPERTY NAMES INSIDE INTERFACE
+==================================================
+
+Use camelCase.
+
+Example:
+
+    interface User {
+      firstName: string;
+      lastName: string;
+      emailAddress: string;
+      isActive: boolean;
+    }
+
+
+NOT:
+
+    interface User {
+      FirstName: string;
+      LastName: string;
+      EmailAddress: string;
+      IsActive: boolean;
+    }
+
+
+==================================================
+15. TYPES
+==================================================
+
+Primitive types:
+
+    string
+    number
+    boolean
+    null
+    undefined
+
+
+Example:
+
+    name: string;
+
+    age: number;
+
+    isActive: boolean;
+
+
+Array:
+
+    string[]
+
+    number[]
+
+    User[]
+
+
+Example:
+
+    names: string[];
+
+    numbers: number[];
+
+    users: User[];
+
+
+==================================================
+16. OBJECT TYPE
+==================================================
+
+For reusable data structures, prefer an interface.
+
+Example:
+
+    interface User {
+      name: string;
+      age: number;
+    }
+
+
+Then:
+
+    user: User;
+
+
+Or Signal:
+
+    user = signal<User>({
+      name: 'Akshay',
+      age: 34
+    });
+
+
+Multiple:
+
+    users = signal<User[]>([
+      {
+        name: 'Akshay',
+        age: 34
+      }
+    ]);
+
+
+==================================================
+17. WHEN TO USE INTERFACE?
+==================================================
+
+Use interface when you mainly want to describe
+the shape of data.
+
+Example:
+
+    interface User {
+      id: number;
+      name: string;
+      email: string;
+    }
+
+
+Very common for:
+
+    API response
+    API request
+    Form data
+    Table data
+    Component data
+    Signal state
+
+
+Think:
+
+    interface = SHAPE OF DATA
+
+
+==================================================
+18. WHEN TO USE CLASS?
+==================================================
+
+Use a class when you need actual object behavior,
+methods, constructor logic, getters/setters, etc.
+
+
+Example:
+
+    class User {
+
+      constructor(
+        public name: string,
+        public age: number
+      ) {}
+
+      isAdult() {
+        return this.age >= 18;
+      }
+
+    }
+
+
+Here User has:
+
+    Properties
+        +
+    Behavior
+
+
+Think:
+
+    class = DATA + BEHAVIOR
+
+
+==================================================
+19. ANGULAR COMPONENT CLASS
+==================================================
+
+Example:
+
+    export class UserComponent {
+
+      users = signal<User[]>([]);
+
+      loading = signal(false);
+
+      loadUsers() {
+        // logic
+      }
+
+      deleteUser(id: number) {
+        // logic
+      }
+
+    }
+
+
+Here:
+
+    UserComponent
+        |
+        +-- properties/state
+        |
+        +-- Signals
+        |
+        +-- methods
+        |
+        +-- UI-related logic
+
+
+==================================================
+20. SERVICE CLASS
+==================================================
+
+Service is normally used for application/business
+logic that should not be placed directly inside
+the component.
+
+
+Example:
+
+    export class UserService {
+
+      getUsers() {
+        // API logic
+      }
+
+      createUser() {
+        // API logic
+      }
+
+      deleteUser(id: number) {
+        // API logic
+      }
+
+    }
+
+
+Think:
+
+    Component
+        |
+        | asks
+        v
+    Service
+        |
+        v
+    API / Business logic
+
+
+==================================================
+21. FILE NAMING
+==================================================
+
+Angular files normally use lowercase kebab-case.
+
+
+Component:
+
+    user.component.ts
+
+
+Service:
+
+    user.service.ts
+
+
+Directive:
+
+    highlight.directive.ts
+
+
+Pipe:
+
+    capitalize.pipe.ts
+
+
+Guard:
+
+    auth.guard.ts
+
+
+Interface/model:
+
+    user.ts
+    user.model.ts
+
+
+Examples:
+
+    product.component.ts
+    product.service.ts
+    order.service.ts
+    user.model.ts
+
+
+==================================================
+22. FOLDER NAMING
+==================================================
+
+Use lowercase / kebab-case.
+
+Examples:
+
+    components/
+    services/
+    models/
+    pages/
+    shared/
+    core/
+
+
+Feature folders:
+
+    user-management/
+    product-management/
+    order-management/
+
+
+Avoid:
+
+    UserManagement/
+    ProductManagement/
+    userManagement/
+
+
+==================================================
+23. BOOLEAN NAMING
+==================================================
+
+Boolean variables should communicate
+true/false meaning.
+
+
+Good:
+
+    isActive
+    isAdmin
+    isLoading
+    isLoggedIn
+    hasPermission
+    hasError
+    canEdit
+    canDelete
+
+
+Example:
+
+    isLoading = signal(false);
+
+    isAdmin = signal(true);
+
+
+This makes code easy to understand.
+
+
+==================================================
+24. EVENT METHOD NAMING
+==================================================
+
+Use names that describe the action.
+
+Good:
+
+    addUser()
+    deleteUser()
+    updateUser()
+    saveUser()
+    loadUsers()
+    refreshUsers()
+    submitForm()
+    cancelForm()
+
+
+Avoid vague names:
+
+    doSomething()
+    process()
+    handle()
+    clickMe()
+
+
+Unless the meaning is genuinely clear.
+
+
+==================================================
+25. PRIVATE PROPERTIES
+==================================================
+
+TypeScript supports:
+
+    private
+
+
+Example:
+
+    private apiUrl = '...';
+
+
+But in modern Angular, you may also see:
+
+    private readonly apiUrl = '...';
+
+
+Use access modifiers when they communicate
+important design intent.
+
+
+==================================================
+26. READONLY
+==================================================
+
+Use readonly when a property should not be
+reassigned after initialization.
+
+
+Example:
+
+    readonly appName = 'My App';
+
+
+You can also use:
+
+    readonly apiUrl = '...';
+
+
+Meaning:
+
+    This reference should not be reassigned.
+
+
+==================================================
+27. ENUMS
+==================================================
+
+Enum names use PascalCase.
+
+Example:
+
+    enum UserRole {
+      Admin,
+      User,
+      Guest
+    }
+
+
+Values are commonly PascalCase or UPPER_CASE
+depending on project style.
+
+
+Modern TypeScript projects often prefer unions
+for simple cases:
+
+    type UserRole = 'admin' | 'user' | 'guest';
+
+
+==================================================
+28. TYPE ALIAS
+==================================================
+
+Use PascalCase for reusable type names.
+
+Example:
+
+    type UserId = number;
+
+    type UserRole = 'admin' | 'user';
+
+
+==================================================
+29. GENERIC NAMES
+==================================================
+
+Common TypeScript generic naming:
+
+    T
+    K
+    V
+
+
+Example:
+
+    function getValue<T>(value: T): T {
+      return value;
+    }
+
+
+For meaningful generics, descriptive names can
+be used:
+
+    TUser
+    TResponse
+
+
+But don't overcomplicate simple code.
+
+
+==================================================
+30. SIGNAL + INTERFACE - GOOD PRACTICE
+==================================================
+
+Instead of:
+
+    users = signal<{
+      name: string;
+      age: number;
+    }[]>([
+      ...
+    ]);
+
+
+For reusable models, prefer:
+
+    interface User {
+      name: string;
+      age: number;
+    }
+
+
+Then:
+
+    users = signal<User[]>([
+      {
+        name: 'Akshay',
+        age: 34
+      }
+    ]);
+
+
+This is cleaner.
+
+
+==================================================
+31. COMPLETE REAL-WORLD EXAMPLE
+==================================================
+
+File:
+
+    user.model.ts
+
+
+    export interface User {
+      id: number;
+      firstName: string;
+      lastName: string;
+      email: string;
+      isActive: boolean;
+    }
+
+
+File:
+
+    user.service.ts
+
+
+    export class UserService {
+
+      getUsers() {
+        // API logic
+      }
+
+      deleteUser(id: number) {
+        // API logic
+      }
+
+    }
+
+
+File:
+
+    user.component.ts
+
+
+    export class UserComponent {
+
+      users = signal<User[]>([]);
+
+      isLoading = signal(false);
+
+      selectedUser = signal<User | null>(null);
+
+      loadUsers() {
+        // component logic
+      }
+
+      selectUser(user: User) {
+        this.selectedUser.set(user);
+      }
+
+    }
+
+
+File:
+
+    user.component.html
+
+
+    @for (user of users(); track user.id) {
+
+      <p>{{ user.firstName }}</p>
+
+      <p>{{ user.lastName }}</p>
+
+    }
+
+
+==================================================
+32. C# VS TYPESCRIPT QUICK COMPARISON
+==================================================
+
+C#:
+
+    class User
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+    }
+
+
+TypeScript:
+
+    interface User {
+      name: string;
+      age: number;
+    }
+
+
+C# naming:
+
+    UserName
+    IsActive
+    GetUsers()
+
+
+TypeScript naming:
+
+    userName
+    isActive
+    getUsers()
+
+
+Both:
+
+    ClassName
+    ServiceName
+    ComponentName
+
+use PascalCase.
+
+
+==================================================
+33. MOST IMPORTANT RULES TO MEMORIZE
+==================================================
+
+CLASS
+    PascalCase
+
+    UserService
+    UserComponent
+    Product
+
+
+INTERFACE
+    PascalCase
+
+    User
+    Product
+    Order
+
+
+PROPERTY
+    camelCase
+
+    userName
+    firstName
+    isActive
+
+
+VARIABLE
+    camelCase
+
+    user
+    users
+    totalPrice
+
+
+METHOD
+    camelCase
+
+    getUsers()
+    addUser()
+    deleteUser()
+
+
+SIGNAL
+    camelCase
+
+    count
+    users
+    isLoading
+
+
+COMPUTED
+    camelCase
+
+    fullName
+    totalPrice
+    filteredUsers
+
+
+FILE
+    lowercase-kebab-case
+
+    user.component.ts
+    user.service.ts
+    user.model.ts
+
+
+BOOLEAN
+    is / has / can
+
+    isActive
+    isAdmin
+    hasPermission
+    canEdit
+
+
+==================================================
+34. ONE BIG RULE
+==================================================
+
+TypeScript / Angular generally follows:
+
+    PascalCase
+        ↓
+    Classes
+    Interfaces
+    Types
+    Enums
+
+
+    camelCase
+        ↓
+    Variables
+    Properties
+    Methods
+    Functions
+    Signals
+    Computed values
+
+
+    kebab-case
+        ↓
+    File names
+    Folder names

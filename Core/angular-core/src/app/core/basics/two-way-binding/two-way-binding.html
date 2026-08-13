@@ -1,0 +1,182 @@
+<p>two-way-binding works!</p>
+
+<!-- Example 1 - Old way of ngModule of Two way data binding -->
+<h2>Old way - two way binding</h2>
+<input [(ngModel)]="username" placeholder="Enter your name" />
+
+<p>{{username}}</p>
+
+<!-- Example 2 - New way of Two way data binding -->
+<h2>New way - two way binding</h2>
+<input [value]="name()" (input)="name.set($event.target.value)" placeholder="Enter your name" />
+<p>{{name()}}</p>
+
+
+<!-- Example 3 -  -->
+ <input [value]="user().name" (input)="updateName($event.target.value)" placeholder="Enter your name" />
+ <p>Updated Name : {{user().name}}</p>
+
+
+ <br><hr>
+
+ <p>Updated Age : {{user().age}}</p>
+ <button (click)="updateAge()">Increase Age</button>
+
+
+
+
+ <h2>Angular Two-Way Data Binding - Notes</h2>
+
+<p>
+  <b>Definition:</b>
+  Two-way data binding means data can flow in both directions:
+  from component to HTML and from HTML back to the component.
+</p>
+
+<p>
+  <b>Component → HTML:</b>
+  When the component value changes, the HTML is updated.
+</p>
+
+<p>
+  <b>HTML → Component:</b>
+  When the user changes the input, the component value is updated.
+</p>
+
+<p>
+  <b>In short:</b>
+  Component ↔ HTML
+</p>
+
+<hr>
+
+<h3>1. Old / Traditional Way - ngModel</h3>
+
+<p>
+  Angular provides <b>ngModel</b> for two-way data binding.
+</p>
+
+<p>
+  Syntax:
+  [(ngModel)]="username"
+</p>
+
+<p>
+  It combines property binding and event binding into one syntax.
+</p>
+
+<p>
+  [(ngModel)] is commonly called <b>banana in a box</b> syntax.
+</p>
+
+<p>
+  Example:
+  input changes → username changes → HTML updates automatically.
+</p>
+
+<p>
+  <b>Requirement:</b>
+  FormsModule must be imported to use ngModel.
+</p>
+
+<hr>
+
+<h3>2. New / Signal Way</h3>
+
+<p>
+  With Signals, we can explicitly combine property binding and
+  event binding.
+</p>
+
+<p>
+  Example:
+  [value]="name()"
+</p>
+
+<p>
+  This sends the Signal value from the component to the HTML.
+</p>
+
+<p>
+  Example:
+  (input)="name.set(...)"
+</p>
+
+<p>
+  This sends the changed input value from the HTML back to the Signal.
+</p>
+
+<p>
+  So:
+  Signal → HTML
+  and
+  HTML → Signal
+</p>
+
+<p>
+  <b>In short:</b>
+  [value] + (input) = two-way data flow.
+</p>
+
+<hr>
+
+<h3>3. Two-Way Binding with Signal Object</h3>
+
+<p>
+  A Signal can also contain an object.
+</p>
+
+<p>
+  Example:
+  user = signal(&#123; name: 'Akshay', age: 25 &#125;)
+</p>
+
+<p>
+  To update only the name, we use update().
+</p>
+
+<p>
+  update(user =&gt; (&#123; ...user, name: newName &#125;))
+</p>
+
+<p>
+  The spread operator (...user) keeps the existing properties and
+  changes only the required property.
+</p>
+
+<p>
+  Similarly, age can be updated using:
+  update(user =&gt; (&#123; ...user, age: user.age + 1 &#125;))
+</p>
+
+<hr>
+
+<h3>Property Binding vs Event Binding</h3>
+
+<p>
+  <b>[value]</b> → Component → HTML
+</p>
+
+<p>
+  <b>(input)</b> → HTML → Component
+</p>
+
+<p>
+  <b>[(ngModel)]</b> → Both directions together
+</p>
+
+<hr>
+
+<h3>Easy Flow</h3>
+
+<p>
+  User types in input
+  → input event
+  → Signal updates
+  → Angular updates HTML
+</p>
+
+<p>
+  <b>In short:</b>
+  Two-way binding = Component ↔ HTML.
+</p>

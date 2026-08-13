@@ -1,0 +1,90 @@
+<p>computed-signals works!</p>
+
+<h2>count Example</h2>
+
+<button (click)="incriment()">Change count value</button>
+
+<p>Count: {{count()}}</p>
+<p>doubleCount: {{doubleCount}}</p>
+<p>tripleCount: {{tripleCount}}</p>
+
+<p>doubleCountSignal: {{doubleCountSignal()}}</p>
+<p>tripleCountSignal: {{tripleCountSignal()}}</p>
+
+<h2>last name Example</h2>
+
+
+<button (click)="changeName()">Change lastname</button>
+
+<p>firstName: {{firstName()}}</p>
+<p>lastName: {{lastName()}}</p>
+
+<p>fullName: {{fullName}}</p>
+
+<p>fullNameSignal: {{fullNameSignal()}}</p>
+
+<h2>price Example</h2>
+
+<input
+  (change)="addPrice($event.target.value)"
+  placeholder="Enter price"
+  min="0"
+  max="10"
+  type="number"
+>
+<p>Price: {{price()}}</p>
+
+<p>TotalPrice: {{totalPrice}}</p>
+<p>TotalPriceSignal: {{totalPriceSignal()}}</p>
+
+
+<br><br>
+
+<h3>Normal Property vs Signal</h3>
+
+<p><b>Normal Property:</b> It stores a value.</p>
+
+<p>
+  If another value is calculated from it, we need to manually
+  recalculate that value when the original value changes.
+</p>
+
+<p>
+  Example: count = 1, doubleCount = count * 2.
+  If count becomes 2, doubleCount does not automatically become 4.
+</p>
+
+<hr>
+
+<p><b>Signal:</b> It stores a value and Angular tracks its changes.</p>
+
+<p>
+  If another value depends on the Signal using computed(),
+  Angular knows the dependency automatically.
+</p>
+
+<p>
+  Example: count = signal(1),
+  doubleCount = computed(() => count() * 2).
+</p>
+
+<p>
+  If count changes from 1 to 2, doubleCount automatically
+  becomes 4.
+</p>
+
+<hr>
+
+<p>
+  <b>In short:</b>
+  Normal property → stores value, dependency is not tracked.
+</p>
+
+<p>
+  Signal → stores reactive value and Angular tracks its dependencies.
+</p>
+
+<p>
+  computed() → creates a value based on Signals and updates when
+  its dependent Signals change.
+</p>

@@ -1,0 +1,63 @@
+<p>effects-signals works!</p>
+
+<!-- Example 1 -->
+<button (click)="increment()">Change Count Value see console.</button>
+
+<br><br>
+<!-- Example 2 -->
+<h2>Dark Mode with effect</h2>
+<button (click)="toggle()">Change Screen Mode</button>
+
+<br><br>
+<!-- Example 3 -->
+<h2>Show message with effect</h2>
+<button (click)="showMessage()">Show Message</button>
+@if(message()){
+    <p>Message: {{message()}}</p>
+}
+
+
+
+<h2>Effects - Simple Explanation</h2>
+
+<p>
+  <b>effect()</b> is used to automatically execute some logic when
+  the Signal values used inside the effect change.
+</p>
+
+<p>
+  The effect runs once when it is initialized, and then runs again
+  whenever its dependent Signal changes.
+</p>
+
+<p>
+  <b>Example 1:</b> If count changes, the effect can automatically
+  print the new count value in the console.
+</p>
+
+<p>
+  <b>Example 2:</b> If isDarkMode changes, the effect can automatically
+  change the document body's background and text color.
+</p>
+
+<p>
+  <b>Example 3:</b> If message changes, the effect can automatically
+  perform some logic based on the new message.
+</p>
+
+<p>
+  <b>Important:</b> effect() is mainly used for side effects such as
+  console.log, changing the DOM, localStorage, API calls, or other
+  actions outside the Signal state.
+</p>
+
+<p>
+  <b>computed vs effect:</b>
+  computed() calculates and returns a new value.
+  effect() executes logic when its dependent Signals change.
+</p>
+
+<p>
+  <b>In short:</b>
+  Signal changes → effect() automatically runs → perform some action.
+</p>
