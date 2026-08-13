@@ -22,6 +22,7 @@ import { Pipes } from './core/Intermediate/pipes/pipes';
 import { PipeShortNamePipe } from './core/Intermediate/pipe/custom-pipes/pipe-short-name-pipe';
 import { SignalDeepDive } from './core/Intermediate/signal-deep-dive/signal-deep-dive';
 import { TwoWayBinding } from './core/basics/two-way-binding/two-way-binding';
+import { TodoApp } from './BasicProjects/todo-app/todo-app';
 
 @Component({
   selector: 'app-root',
@@ -47,6 +48,7 @@ import { TwoWayBinding } from './core/basics/two-way-binding/two-way-binding';
     Pipes,
     SignalDeepDive,
     TwoWayBinding,
+    TodoApp,
     RouterOutlet,
   ],
   templateUrl: './app.html',

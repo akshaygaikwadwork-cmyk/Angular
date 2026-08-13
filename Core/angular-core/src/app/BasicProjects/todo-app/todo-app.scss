@@ -1,0 +1,187 @@
+.todo-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+
+  background: #ffffff;
+  border-radius: 12px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+  font-family: Arial, sans-serif;
+}
+
+.todo-header {
+  margin-bottom: 25px;
+
+  h2 {
+    margin: 0 0 8px;
+    color: #222;
+    font-size: 28px;
+  }
+
+  p {
+    margin: 0;
+    color: #777;
+  }
+}
+
+.todo-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+
+  input {
+    flex: 1;
+    padding: 12px 14px;
+
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+
+    font-size: 15px;
+    outline: none;
+
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    }
+  }
+
+  button {
+    padding: 12px 22px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #4f46e5;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background 0.2s, transform 0.1s;
+
+    &:hover {
+      background: #4338ca;
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+
+  th {
+    background: #f8f9fc;
+    color: #555;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  tbody tr {
+    transition: background 0.2s;
+
+    &:hover {
+      background: #f8f9ff;
+    }
+  }
+}
+
+.todo-number {
+  width: 60px;
+  color: #777;
+}
+
+.todo-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.delete-btn {
+  padding: 8px 14px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: #ef4444;
+  color: white;
+
+  cursor: pointer;
+
+  transition: background 0.2s;
+
+  &:hover {
+    background: #dc2626;
+  }
+}
+
+.empty-state {
+  padding: 35px;
+  text-align: center;
+
+  background: #f8f9fc;
+  border-radius: 10px;
+
+  p {
+    margin: 0 0 5px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #555;
+  }
+
+  span {
+    color: #888;
+    font-size: 14px;
+  }
+}
+
+.status-btn {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 6px;
+
+  background: #f59e0b;
+  color: white;
+
+  cursor: pointer;
+
+  &:hover {
+    background: #d97706;
+  }
+
+  &.done {
+    background: #22c55e;
+
+    &:hover {
+      background: #16a34a;
+    }
+  }
+}
+
+tr.completed {
+  background: #f0fdf4;
+
+  .todo-name {
+    color: #888;
+    text-decoration: line-through;
+  }
+}

@@ -1,0 +1,159 @@
+<div class="todo-container">
+
+  <div class="todo-header">
+    <h2>My Todo List</h2>
+    <p>Add, complete and delete your todo items.</p>
+  </div>
+
+  <div class="todo-input">
+
+    <input
+      #toDoItem
+      type="text"
+      placeholder="Enter something to add..."
+      (keyup.enter)="addItemIntoToDoList(toDoItem.value); toDoItem.value = ''"
+    />
+
+    <button
+      type="button"
+      (click)="addItemIntoToDoList(toDoItem.value); toDoItem.value = ''"
+    >
+      Add
+    </button>
+
+  </div>
+
+  @if (todoListRecords().length > 0) {
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Todo</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          @for (item of todoListRecords(); track $index) {
+
+            <tr [class.completed]="item.isCompleted">
+
+              <td>
+                {{ $index + 1 }}
+              </td>
+
+              <td class="todo-name">
+                {{ item.name }}
+              </td>
+
+              <td>
+
+                <button
+                  type="button"
+                  class="status-btn"
+                  [class.done]="item.isCompleted"
+                  (click)="toggleTodo($index)"
+                >
+                  {{ item.isCompleted ? 'Done' : 'Pending' }}
+                </button>
+
+              </td>
+
+              <td>
+
+                <button
+                  type="button"
+                  class="delete-btn"
+                  (click)="deleteFromToDoList($index)"
+                >
+                  Delete
+                </button>
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  } @else {
+
+    <div class="empty-state">
+      <p>No todo items yet.</p>
+      <span>Add your first task above.</span>
+    </div>
+
+  }
+
+</div>
+
+
+
+
+
+<hr><h2>Todo App - Signal Practice</h2>
+
+<p>
+  <b>Signal:</b>
+  todoListRecords stores the Todo items as a reactive array.
+</p>
+
+<p>
+  <b>Add:</b>
+  update() is used to create a new array by keeping the existing
+  items and adding the new item.
+</p>
+
+<p>
+  Example:
+  [...items, newItem]
+</p>
+
+<p>
+  <b>Delete:</b>
+  filter() creates a new array without the selected item.
+</p>
+
+<p>
+  Example:
+  items.filter((_, index) => index !== deleteIndex)
+</p>
+
+<p>
+  <b>for:</b>
+  Used to loop through the Todo Signal array and display each item.
+</p>
+
+<p>
+  <b>track $index:</b>
+  Helps Angular track each item in the list using its index.
+</p>
+
+<p>
+  <b>if:</b>
+  Used to conditionally show the Todo table when items exist and
+  an empty message when there are no items.
+</p>
+
+<p>
+  <b>Important:</b>
+  When todoListRecords changes, Angular tracks that the template
+  depends on this Signal and updates the affected UI.
+</p>
+
+<p>
+  <b>In short:</b>
+  Signal → stores Todo list → update() changes the list →
+  Angular reacts → UI updates.
+</p>
